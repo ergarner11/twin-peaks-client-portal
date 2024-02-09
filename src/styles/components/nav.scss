@@ -1,0 +1,72 @@
+@import '../global/colors.scss';
+@import '../global/mixins.scss';
+@import '../global/typography.scss';
+nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: $layoutBlack;
+  z-index: 1;
+  @media screen and (min-width: 768px) {
+    position: unset;
+    bottom: unset;
+    img {
+      height: 40px;
+    }
+    .nav-content {
+      max-width: 1300px;
+      padding: 0 100px;
+      height: 70px;
+    }
+  }
+  .nav-tabs {
+    @extend %flex-row-aligned;
+    justify-content: space-between;
+    height: 100%;
+    border: none;
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 60px;
+      width: 60px;
+      padding: 8px 0px 5px 0px;
+      >span {
+        font-size: 10px;
+      }
+      >svg {
+        margin-right: 0px;
+        width: 25px;
+        height: auto;
+      }
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        height: 100%;
+        width: unset;
+        padding: 0px 20px;
+        >span {
+          font-size: 14px;
+        }
+        >svg {
+          margin-right: 10px;
+        }
+      }
+      >*:not(.tooltip-container) {
+        height: 26px;
+        font-family: $sura;
+        line-height: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        color: $layoutWhite;
+      }
+      &:hover,
+      &.selected {
+        text-decoration: none;
+        background-color: black;
+        cursor: pointer;
+      }
+    }
+  }
+}

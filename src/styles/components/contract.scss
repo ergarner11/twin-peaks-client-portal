@@ -1,0 +1,75 @@
+@import '../global/colors.scss';
+@import '../global/typography.scss';
+.contract-snapshot {
+  .activation-message {
+    border: 1px solid $attention;
+    border-radius: 5px;
+    span {
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    svg {
+      margin-top: 5px;
+      @media screen and (min-width: 768px) {
+        margin-top: 0px;
+      }
+      min-width: 25px;
+    }
+  }
+  .form-control-read-only label {
+    font-weight: normal;
+  }
+  .overdue {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-family: $roboto;
+  }
+}
+
+.notice {
+  margin: 30px 20px;
+  width: 210px;
+  h3 {
+    @extend %button-text;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  p {
+    font-family: $sura;
+    font-size: 12px;
+  }
+}
+
+.override {
+  justify-content: flex-end;
+  color: $disabledLight;
+  &:hover {
+    text-decoration: underline;
+    color: $disabledDark;
+  }
+}
+
+.renewal,
+.billing-activity {
+  cursor: pointer;
+  .header {
+    * {
+      cursor: pointer;
+    }
+  }
+}
+
+.billing-activity {
+  th.payment-method,
+  td.payment-method {
+    width: 70px;
+    padding-right: 30px;
+  }
+  th.description,
+  td.description {
+    max-width: 230px;
+  }
+}

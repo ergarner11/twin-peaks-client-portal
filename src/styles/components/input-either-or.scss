@@ -1,0 +1,30 @@
+@import '../global/colors.scss';
+.input-either-or {
+  .selected {
+    background-color: white;
+    color: $interactiveGreen3;
+    border: 1px solid $interactiveGreen3;
+  }
+  input[type='radio'] {
+    width: 0px;
+    height: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+  }
+  .option1 {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .option2 {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  label {
+    height: 40px;
+    font-size: 16px;
+  }
+}

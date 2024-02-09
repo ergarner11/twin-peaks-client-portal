@@ -1,0 +1,112 @@
+@import '../global/colors.scss';
+@import '../global/mixins.scss';
+@import '../global/typography.scss';
+.payment-method-widget {
+  width: 100%;
+  padding: 15px;
+  @media screen and (min-width: 768px) {
+    width: 400px;
+    padding: 25px;
+  }
+  border: 1px solid $subtle;
+  border-radius: 5px;
+  >label {
+    color: $layoutBlack;
+  }
+  .selected {
+    border: 1px solid $interactiveGreen3;
+  }
+  .payment-method {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    margin-bottom: 10px;
+    @media screen and (min-width: 768px) {
+      min-height: 40px;
+      padding: 0px;
+      padding-left: 10px;
+      margin-bottom: 5px;
+    }
+    border-radius: 5px;
+    background-color: $layoutWhite;
+    cursor: pointer;
+    * {
+      font-family: $sura;
+      cursor: pointer;
+    }
+    .payment-method-info {
+      @extend %flex-row-aligned;
+      input[type='radio'] {
+        width: 0px;
+        height: 0px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        outline: none;
+        border: none;
+      }
+      label {
+        @extend %flex-row-aligned;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        @media screen and (min-width: 768px) {
+          align-self: unset;
+          padding: 10px 5px;
+        }
+      }
+      button {
+        font-family: $sura;
+        font-size: 14px;
+        font-weight: normal;
+      }
+      svg {
+        color: $subtle;
+      }
+      .check-mark {
+        color: transparent;
+        align-self: flex-start;
+        @media screen and (min-width: 768px) {
+          align-self: unset;
+        }
+      }
+    }
+    &.selected {
+      svg,
+      .check-mark {
+        color: $interactiveGreen3;
+      }
+    }
+    &.disabled {
+      label {
+        color: $disabledLight;
+        cursor: auto;
+      }
+    }
+    .add-payment-method {
+      color: $attention;
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 10px 5px;
+      @media screen and (min-width: 768px) {
+        margin-left: 40px;
+      }
+    }
+    .ach-offer {
+      color: $attention;
+      margin-left: 30px;
+      margin-right: 10px;
+      margin-bottom: 15px;
+      @media screen and (min-width: 768px) {
+        margin-left: 75px;
+      }
+    }
+  }
+}
+
+.add-card {
+  @media screen and (min-width: 768px) {
+    width: 350px;
+  }
+}

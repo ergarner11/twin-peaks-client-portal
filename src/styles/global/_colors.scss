@@ -1,0 +1,68 @@
+$layoutBlack: #0f1b26;
+$layoutWhite: #fcfbf9;
+$layoutGray: #f3f3f3;
+$layoutGreen: #add3c5;
+$layoutOrange: #b5673b;
+$interactiveGreen1: #244e44;
+$interactiveGreen2: #30685a;
+$interactiveGreen3: #3c8271;
+$interactiveGreen4: #30685a;
+$interactiveGreen5: #30685a;
+$disabledBackground: #dcdcdc;
+$disabledLight: #928d86;
+$disabledDark: #3f3f3f;
+$darkBlue: #435b71;
+$attention: #00a17a;
+$error: #d64141;
+$subtle: #d5d3d3;
+.background-white {
+  background-color: $layoutWhite;
+}
+
+.background-gray {
+  background-color: $layoutGray;
+}
+
+.background-green {
+  background-color: $layoutGreen;
+}
+
+.background-orange {
+  background-color: $layoutOrange;
+}
+
+.attention {
+  color: $attention;
+}
+
+.red {
+  color: $error;
+}
+
+.blue {
+  color: $darkBlue;
+}
+
+.orange {
+  color: $layoutOrange;
+}
+
+.gray {
+  color: $disabledLight;
+}
+
+.dark-gray {
+  color: $disabledDark;
+}
+
+.black {
+  color: $layoutBlack;
+}
+
+.white {
+  color: $layoutWhite;
+}
+
+.subtle {
+  color: $subtle;
+}

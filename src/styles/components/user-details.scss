@@ -1,0 +1,52 @@
+@import '../global/colors.scss';
+@import '../global/typography.scss';
+.user-details {
+  @media screen and (min-width: 768px) {
+    padding: 20px 50px;
+    width: 500px;
+  }
+  .item {
+    width: 100%;
+    margin-bottom: 20px;
+    > label {
+      @media screen and (min-width: 768px) {
+        width: 115px;
+      }
+      margin-right: 15px;
+      font-family: $newsCycle;
+      font-weight: bolder;
+      font-size: 14px;
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+      color: $layoutBlack;
+    }
+    > span {
+      font-family: $sura;
+      font-size: 14px;
+      @media screen and (min-width: 768px) {
+        font-size: 16px;
+      }
+      color: $disabledLight;
+    }
+    > button {
+      margin-top: 3px;
+      float: right;
+      font-family: $sura;
+      font-size: 18px;
+    }
+    &.edit-mode {
+      background-color: $layoutGray;
+      @media screen and (min-width: 768px) {
+        padding: 15px 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+      > label {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

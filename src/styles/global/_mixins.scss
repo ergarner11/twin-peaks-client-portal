@@ -1,0 +1,20 @@
+@mixin box-shadow( $horizontalOffset: 4px, $verticalOffset: 4px, $blurRadius: 10px, $spreadRadius: 0) {
+  box-shadow: $horizontalOffset $verticalOffset $blurRadius $spreadRadius rgba(0, 0, 0, 0.1);
+}
+
+@mixin flex-row-aligned {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+%flex-row-aligned {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+%flex-centered {
+  @extend %flex-row-aligned;
+  justify-content: center;
+}

@@ -1,0 +1,70 @@
+@import '../global/colors.scss';
+@import '../global/mixins.scss';
+@import '../global/typography.scss';
+.client-info {
+  @include box-shadow;
+  padding: 15px;
+  @media screen and (min-width: 768px) {
+    min-height: 150px;
+    padding: 30px;
+  }
+  background-color: $layoutGray;
+  border-radius: 5px;
+  label {
+    font-size: 16px;
+    color: $layoutBlack;
+    font-family: $newsCycle;
+    font-weight: bold;
+  }
+  p {
+    font-size: 16px;
+    font-family: $sura;
+  }
+}
+
+.client-menu {
+  background-color: $layoutWhite;
+  mix-blend-mode: normal;
+  .option {
+    justify-content: flex-start;
+    padding-left: 15px;
+    height: 50px;
+    width: 100%;
+    color: black;
+    border-radius: 0;
+    background-color: $layoutWhite;
+    font-size: 16px;
+    font-weight: normal;
+    text-transform: none;
+  }
+  li {
+    padding-left: 50px;
+    font-size: 16px;
+    line-height: 40px;
+    font-weight: 700;
+    background-color: $layoutWhite;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .selected {
+    color: $layoutWhite;
+    background: linear-gradient(90deg, $darkBlue 0%, #74948e 133.33%);
+  }
+}
+
+.client-sidebar {
+  z-index: 1;
+  border-top-left-radius: 5px;
+  h1 {
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+  }
+  img {
+    width: 60px;
+    @media screen and (min-width: 992px) {
+      width: 80px;
+    }
+  }
+}
