@@ -25,7 +25,7 @@ function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
     const getPet = async () => {
       try {
         setIsLoading(true);
-        const response = await http.get(`/pet/getById?pet_id=${petId}`);
+        const response = await http.get(`/pet/getCompleteById?pet_id=${petId}`);
         setPet(response.data);
       } catch (error) {
         setErrorMessage(error.response.data.message);
