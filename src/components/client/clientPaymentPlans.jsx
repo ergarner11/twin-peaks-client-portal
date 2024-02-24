@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
+import http from '../../services/httpService';
 
 import BillingActivity from '../contract/billingActivity';
 import Contract from '../contract/contract';
@@ -10,16 +12,38 @@ import Constants from '../../constants';
 
 import '../../styles/components/contract.scss';
 
-function ClientPaymentPlans({ client, clientIsCurrent, isLoading }) {
+function ClientPaymentPlans({ client }) {
   const CURRENT_PAYMENT_PLANS = 0;
   const PREVIOUS_PAYMENT_PLANS = 1;
 
+  const [currentPaymentPlans, setCurrentPaymentPlans] = useState([]);
+  const [previousPaymentPlans, setPreviousPaymentPlans] = useState([]);
   const [selectedTabIndex, setSelectedTabIndex] = useState(CURRENT_PAYMENT_PLANS);
   const [tabInfo, setTabInfo] = useState([
     { text: 'Current Payment Plans', selected: 'Y', customClass: 'no-border-radius-left' },
     { text: 'Previous Payment Plans', selected: 'N' },
   ]);
-  const { currentPaymentPlans, previousPaymentPlans } = client;
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const getPaymentPlans = async () => {
+      try {
+        setIsLoading(true);
+        const response = await http.get(`/client/getPaymentPlans?client_id=${client.id}`);
+        const { currentPaymentPlans, previousPaymentPlans } = response.data;
+        setCurrentPaymentPlans(currentPaymentPlans);
+        setPreviousPaymentPlans(previousPaymentPlans);
+      } catch (error) {
+        setErrorMessage(error.response.data.message);
+      }
+      setIsLoading(false);
+    };
+    if (client.id) {
+      getPaymentPlans();
+    }
+  }, [client]);
 
   const handleSelectNewTab = selectedTabIndex => {
     const newTabInfo = [...tabInfo];
@@ -31,6 +55,7 @@ function ClientPaymentPlans({ client, clientIsCurrent, isLoading }) {
 
   return (
     <div className="content-panel">
+      {errorMessage && <p className="error">{errorMessage}</p>}
       {isLoading && <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />}
       {!isLoading && (
         <React.Fragment>
@@ -42,7 +67,7 @@ function ClientPaymentPlans({ client, clientIsCurrent, isLoading }) {
                   <Contract
                     key={contract.id}
                     contract={contract}
-                    clientIsCurrent={clientIsCurrent}
+                    clientIsCurrent={client.isCurrent}
                   />
                 ))}
 

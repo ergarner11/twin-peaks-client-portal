@@ -6,7 +6,6 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import { ReactComponent as AddIcon } from '../../assets/add-icon.svg';
 import { ReactComponent as BankIcon } from '../../assets/bank-icon.svg';
 import { ReactComponent as CalendarIcon } from '../../assets/calendar-icon.svg';
-import { ReactComponent as CaseIcon } from '../../assets/case-icon.svg';
 import { ReactComponent as CatIcon } from '../../assets/cat-icon.svg';
 import { ReactComponent as CheckMarkIcon } from '../../assets/check-mark-icon.svg';
 import { ReactComponent as ClientOnHoldIcon } from '../../assets/client-on-hold-icon.svg';
@@ -40,9 +39,6 @@ function Icon({ name, tooltipText, className, style }) {
       break;
     case 'calendar':
       icon = <CalendarIcon className={className} />;
-      break;
-    case 'case':
-      icon = <CaseIcon className={className} />;
       break;
     case 'cat':
       icon = <CatIcon className={className} />;

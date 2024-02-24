@@ -55,7 +55,7 @@ function Navbar({ selectedTab }) {
               className={'nav-tab' + (selectedTab === 'OVERVIEW' ? ' selected' : '')}
             >
               <Icon name="home" />
-              <span>Overview</span>
+              <span>Pets</span>
             </Link>
             <Link
               to={`/client/${loggedInUser.id}/payment-plans`}

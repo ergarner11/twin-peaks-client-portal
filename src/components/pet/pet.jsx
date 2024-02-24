@@ -3,7 +3,10 @@ import React, { useState, useEffect } from 'react';
 import http from '../../services/httpService';
 
 import PetHealthPlans from './petHealthPlans';
-import PetHeader from './petHeader';
+
+import Icon from '../common/icon';
+
+import Constants from '../../constants';
 
 import '../../styles/components/pet.scss';
 
@@ -32,6 +35,8 @@ function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
     getPet();
   }, [petId]);
 
+  const currentHealthPlan = pet.currentHealthPlans.filter(t => t.isHealthPlan)[0];
+
   return (
     <div className="content-panel">
       {isLoading && <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />}
@@ -39,7 +44,26 @@ function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
       {!isLoading && !errorMessage && (
         <React.Fragment>
           <div className="pet-info border rounded p-3">
-            <PetHeader pet={pet} />
+            <div className="flex-row-aligned justify-content-between mb-3">
+              <div className="flex-row-aligned">
+                <h2 className="me-2">{pet.name}</h2>
+                {Number(pet.species_id) === Constants.CANINE && <Icon name="dog" />}
+                {Number(pet.species_id) === Constants.FELINE && <Icon name="cat" />}
+                {pet.isDeceased && <Icon name="deceased" />}
+                {pet.inWaitingPeriod &&
+                  !pet.isDeceased &&
+                  (!currentHealthPlan ||
+                    currentHealthPlan.contract_phase === Constants.FINALIZED) && (
+                    <Icon name="waiting_period" />
+                  )}
+                {currentHealthPlan &&
+                  !currentHealthPlan.renewalInfo.isRenewing &&
+                  !pet.isDeceased &&
+                  currentHealthPlan.contract_phase !== Constants.FINALIZED && (
+                    <Icon name="not_renewing" />
+                  )}
+              </div>
+            </div>
             <div className="flex-row-aligned">
               <label>Species:</label>
               <p>{pet.species}</p>

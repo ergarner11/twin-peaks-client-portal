@@ -307,13 +307,6 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.no-result {
-  @extend %message;
-  padding: 20% 15px;
-  text-align: center;
-  color: $layoutBlack;
-}
-
 .message {
   @extend %message;
   color: $layoutBlack;
