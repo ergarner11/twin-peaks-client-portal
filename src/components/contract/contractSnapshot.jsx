@@ -12,7 +12,7 @@ import Constants from '../../constants';
 
 import '../../styles/components/contract.scss';
 
-function ContractSnapshot({ contract, clientIsCurrent, hideLinks }) {
+function ContractSnapshot({ contract, clientIsCurrent }) {
   const [showActivateContract, setShowActivateContract] = useState(false);
   const [showMakePayment, setShowMakePayment] = useState(false);
   const [showUpdatePaymentMethod, setShowUpdatePaymentMethod] = useState(false);
@@ -89,14 +89,12 @@ function ContractSnapshot({ contract, clientIsCurrent, hideLinks }) {
               {contract.currentPaymentMethod.category === Constants.CARD ? 'Card' : 'Bank Account'}{' '}
               - {contract.currentPaymentMethod.last4}
             </p>
-            {!hideLinks && (
-              <button
-                className="btn-text-primary font-14 sura ms-3"
-                onClick={() => setShowUpdatePaymentMethod(true)}
-              >
-                Edit
-              </button>
-            )}
+            <button
+              className="btn-text-primary font-14 sura ms-3"
+              onClick={() => setShowUpdatePaymentMethod(true)}
+            >
+              Edit
+            </button>
             {showUpdatePaymentMethod && (
               <UpdatePaymentMethod
                 contract={contract}
@@ -123,7 +121,7 @@ function ContractSnapshot({ contract, clientIsCurrent, hideLinks }) {
         {!contract.hasRemainingBalance && contract.isCurrent && (
           <p className="attention font-16 sura">Paid in Full</p>
         )}
-        {!hideLinks && !contract.isCurrent && (
+        {!contract.isCurrent && (
           <button
             className="btn-text-primary font-14"
             onClick={() => setShowMakePayment(true)}

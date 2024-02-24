@@ -14,7 +14,7 @@ import Constants from '../../constants';
 
 import '../../styles/components/contract.scss';
 
-function Contract({ contract, clientIsCurrent, hideLinks }) {
+function Contract({ contract, clientIsCurrent }) {
   const { getArrowProps, getTooltipProps, setTooltipRef, setTriggerRef, visible } =
     usePopperTooltip({
       trigger: 'click',
@@ -67,11 +67,7 @@ function Contract({ contract, clientIsCurrent, hideLinks }) {
 
   return (
     <div className="background-white d-flex flex-column box-shadow rounded p-3 mt-3">
-      <ContractSnapshot
-        contract={contract}
-        clientIsCurrent={clientIsCurrent}
-        hideLinks={hideLinks}
-      />
+      <ContractSnapshot contract={contract} clientIsCurrent={clientIsCurrent} />
       {contract.contract_phase !== Constants.PENDING && (
         <React.Fragment>
           <Mobile>
