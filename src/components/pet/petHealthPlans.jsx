@@ -12,7 +12,7 @@ import Constants from '../../constants';
 import '../../styles/components/contract.scss';
 import '../../styles/components/pet.scss';
 
-function PetHealthPlans({ pet, clientIsCurrent, allowPaymentPlans }) {
+function PetHealthPlans({ pet, clientIsCurrent }) {
   const CURRENT_HEALTH_PLAN = 0;
   const PREVIOUS_HEALTH_PLANS = 1;
 

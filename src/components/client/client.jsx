@@ -50,13 +50,7 @@ function Client() {
   const activeSection = (
     <React.Fragment>
       {selectedSection === 'OVERVIEW' && <ClientPets client={client} isLoading={isLoading} />}
-      {selectedSection === 'PET' && (
-        <Pet
-          petId={params.petId}
-          clientIsCurrent={client.isCurrent}
-          allowPaymentPlans={client.no_payment_plans === 'N'}
-        />
-      )}
+      {selectedSection === 'PET' && <Pet petId={params.petId} client={client} />}
       {selectedSection === 'PAYMENT_PLANS' && <ClientPaymentPlans client={client} />}
       {selectedSection === 'PAYMENT_METHODS' && <PaymentMethods clientId={client.id} />}
     </React.Fragment>

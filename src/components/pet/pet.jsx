@@ -10,7 +10,7 @@ import Constants from '../../constants';
 
 import '../../styles/components/pet.scss';
 
-function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
+function Pet({ petId, client }) {
   const [pet, setPet] = useState({
     name: '',
     healthPlans: [],
@@ -25,15 +25,20 @@ function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
     const getPet = async () => {
       try {
         setIsLoading(true);
-        const response = await http.get(`/pet/getCompleteById?pet_id=${petId}`);
+        const response = await http.get(
+          `/pet/getCompleteById?pet_id=${petId}&client_id=${client.id}`
+        );
         setPet(response.data);
       } catch (error) {
         setErrorMessage(error.response.data.message);
       }
       setIsLoading(false);
     };
-    getPet();
-  }, [petId]);
+
+    if (petId && client.id) {
+      getPet();
+    }
+  }, [petId, client]);
 
   const currentHealthPlan = pet.currentHealthPlans.filter(t => t.isHealthPlan)[0];
 
@@ -69,11 +74,7 @@ function Pet({ petId, clientIsCurrent, allowPaymentPlans }) {
               <p>{pet.species}</p>
             </div>
           </div>
-          <PetHealthPlans
-            pet={pet}
-            clientIsCurrent={clientIsCurrent}
-            allowPaymentPlans={allowPaymentPlans}
-          />
+          <PetHealthPlans pet={pet} clientIsCurrent={client.isCurrent} />
         </React.Fragment>
       )}
     </div>
