@@ -11,12 +11,7 @@ import Constants from '../../constants';
 import '../../styles/components/pet.scss';
 
 function Pet({ petId, client }) {
-  const [pet, setPet] = useState({
-    name: '',
-    healthPlans: [],
-    currentHealthPlans: [],
-    previousHealthPlans: [],
-  });
+  const [pet, setPet] = useState({ name: '', currentHealthPlans: [], previousHealthPlans: [] });
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -40,8 +35,6 @@ function Pet({ petId, client }) {
     }
   }, [petId, client]);
 
-  const currentHealthPlan = pet.currentHealthPlans.filter(t => t.isHealthPlan)[0];
-
   return (
     <div className="content-panel">
       {isLoading && <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />}
@@ -55,18 +48,7 @@ function Pet({ petId, client }) {
                 {Number(pet.species_id) === Constants.CANINE && <Icon name="dog" />}
                 {Number(pet.species_id) === Constants.FELINE && <Icon name="cat" />}
                 {pet.isDeceased && <Icon name="deceased" />}
-                {pet.inWaitingPeriod &&
-                  !pet.isDeceased &&
-                  (!currentHealthPlan ||
-                    currentHealthPlan.contract_phase === Constants.FINALIZED) && (
-                    <Icon name="waiting_period" />
-                  )}
-                {currentHealthPlan &&
-                  !currentHealthPlan.renewalInfo.isRenewing &&
-                  !pet.isDeceased &&
-                  currentHealthPlan.contract_phase !== Constants.FINALIZED && (
-                    <Icon name="not_renewing" />
-                  )}
+                {pet.inWaitingPeriod && !pet.isDeceased && <Icon name="waiting_period" />}
               </div>
             </div>
             <div className="flex-row-aligned">

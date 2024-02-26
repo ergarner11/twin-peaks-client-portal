@@ -25,6 +25,10 @@ function ContractSnapshot({ contract, clientIsCurrent }) {
   const onHold =
     contract.isOnHold ||
     (contract.contract_phase === Constants.FINALIZED && !contract.isCollections);
+  const notRenewing =
+    !contract.renewalInfo.isRenewing &&
+    contract.deceased !== 'Y' &&
+    contract.contract_phase !== Constants.FINALIZED;
   const contractName = JSON.parse(contract.initial_setup_info).contractName;
 
   const header = (
@@ -35,9 +39,10 @@ function ContractSnapshot({ contract, clientIsCurrent }) {
             <span className="me-2">
               {contract.isHealthPlan ? `${contractName} Health Plan` : 'Payment Plan'}
             </span>
-            {clientOnHold && <Icon name="client_on_hold" className="me-0" />}
-            {onHold && <Icon name="on_hold" className="red me-0" />}
-            {contract.isCollections && <Icon name="collections" className="me-0" />}
+            {clientOnHold && <Icon name="client_on_hold" />}
+            {onHold && <Icon name="on_hold" />}
+            {contract.isCollections && <Icon name="collections" />}
+            {notRenewing && <Icon name="not_renewing" />}
           </span>
           {!contract.isEmployeePlan && <span>{contract.payment_interval}</span>}
         </h2>
@@ -55,6 +60,7 @@ function ContractSnapshot({ contract, clientIsCurrent }) {
           {clientOnHold && <Icon name="client_on_hold" />}
           {onHold && <Icon name="on_hold" className="red" />}
           {contract.isCollections && <Icon name="collections" />}
+          {notRenewing && <Icon name="not_renewing" />}
         </div>
       </NotMobile>
     </React.Fragment>
