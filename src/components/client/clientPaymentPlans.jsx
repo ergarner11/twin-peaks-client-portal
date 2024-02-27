@@ -62,14 +62,9 @@ function ClientPaymentPlans({ client }) {
           <h2 className="mb-4">Payment Plans</h2>
           {selectedTabIndex === CURRENT_PAYMENT_PLANS && (
             <React.Fragment>
-              {currentPaymentPlans.length > 0 &&
-                currentPaymentPlans.map(contract => (
-                  <Contract
-                    key={contract.id}
-                    contract={contract}
-                    clientIsCurrent={client.isCurrent}
-                  />
-                ))}
+              {currentPaymentPlans.map(contract => (
+                <Contract key={contract.id} contract={contract} />
+              ))}
 
               {currentPaymentPlans.length === 0 && (
                 <p className="message my-4 ms-2">No Payment Plans to display</p>

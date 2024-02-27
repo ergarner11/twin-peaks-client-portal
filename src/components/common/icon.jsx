@@ -11,11 +11,9 @@ import { ReactComponent as CheckMarkIcon } from '../../assets/check-mark-icon.sv
 import { ReactComponent as ClientOnHoldIcon } from '../../assets/client-on-hold-icon.svg';
 import { ReactComponent as CloseIcon } from '../../assets/close-icon.svg';
 import { ReactComponent as CollectionsIcon } from '../../assets/collections-icon.svg';
-import { ReactComponent as CreditCardIcon } from '../../assets/credit-card-icon.svg';
 import { ReactComponent as DeceasedIcon } from '../../assets/deceased-icon.svg';
 import { ReactComponent as DentalIcon } from '../../assets/dental-icon.svg';
 import { ReactComponent as DogIcon } from '../../assets/dog-icon.svg';
-import { ReactComponent as DollarSignIcon } from '../../assets/dollar-sign.svg';
 import { ReactComponent as HomeIcon } from '../../assets/home-icon.svg';
 import { ReactComponent as LessIcon } from '../../assets/less-icon.svg';
 import { ReactComponent as MoreIcon } from '../../assets/more-icon.svg';
@@ -59,9 +57,6 @@ function Icon({ name, tooltipText, className, style }) {
       icon = <CollectionsIcon className={className} />;
       defaultTooltipText = 'In Collections';
       break;
-    case 'credit_card':
-      icon = <CreditCardIcon className={className} />;
-      break;
     case 'deceased':
       icon = <DeceasedIcon className={className} />;
       defaultTooltipText = 'Deceased';
@@ -77,9 +72,6 @@ function Icon({ name, tooltipText, className, style }) {
     case 'dog':
       icon = <DogIcon className={className} />;
       defaultTooltipText = 'Canine';
-      break;
-    case 'dollar_sign':
-      icon = <DollarSignIcon className={className} />;
       break;
     case 'edit':
       icon = <i className={`fa fa-edit ${className}`} />;

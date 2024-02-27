@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import http from '../../services/httpService';
 
-import Icon from '../common/icon';
 import { Mobile, NotMobile } from '../common/responsive';
 import Page from '../common/page';
 
-import ClientPets from './clientPets';
+import ClientHealthPlans from './clientHealthPlans';
 import ClientPaymentPlans from './clientPaymentPlans';
-import Pet from '../pet/pet';
 import PaymentMethods from './paymentMethods';
+
+import '../../styles/components/client.scss';
 
 function Client() {
   const location = useLocation();
@@ -41,16 +41,13 @@ function Client() {
 
   const selectedSection = location.pathname.includes('payment-plans')
     ? 'PAYMENT_PLANS'
-    : location.pathname.includes('pet')
-    ? 'PET'
     : location.pathname.includes('payment-methods')
     ? 'PAYMENT_METHODS'
-    : 'OVERVIEW';
+    : 'HEALTH_PLANS';
 
   const activeSection = (
     <React.Fragment>
-      {selectedSection === 'OVERVIEW' && <ClientPets client={client} isLoading={isLoading} />}
-      {selectedSection === 'PET' && <Pet petId={params.petId} client={client} />}
+      {selectedSection === 'HEALTH_PLANS' && <ClientHealthPlans client={client} />}
       {selectedSection === 'PAYMENT_PLANS' && <ClientPaymentPlans client={client} />}
       {selectedSection === 'PAYMENT_METHODS' && <PaymentMethods clientId={client.id} />}
     </React.Fragment>
@@ -90,13 +87,12 @@ function Client() {
                 <div className="client-menu">
                   <button
                     className={`option flex-row-aligned ${
-                      ['OVERVIEW', 'PET'].includes(selectedSection) ? 'selected' : ''
+                      selectedSection === 'HEALTH_PLANS' ? 'selected' : ''
                     }`}
-                    onClick={() => navigate(`/client/${client.id}`)}
+                    onClick={() => navigate(`/client/${client.id}/health-plans`)}
                     disabled={isLoading}
                   >
-                    <Icon name="fa fa-paw" />
-                    Pets
+                    Health Plans
                   </button>
                   <button
                     className={`option flex-row-aligned ${
@@ -105,7 +101,6 @@ function Client() {
                     onClick={() => navigate(`/client/${client.id}/payment-plans`)}
                     disabled={isLoading}
                   >
-                    <Icon name="dollar_sign" />
                     Payment Plans
                   </button>
                   <button
@@ -115,7 +110,6 @@ function Client() {
                     onClick={() => navigate(`/client/${client.id}/payment-methods`)}
                     disabled={isLoading}
                   >
-                    <Icon name="credit_card" />
                     Payment Methods
                   </button>
                 </div>

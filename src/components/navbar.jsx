@@ -54,21 +54,21 @@ function Navbar({ selectedTab }) {
               to={`/client/${loggedInUser.id}`}
               className={'nav-tab' + (selectedTab === 'OVERVIEW' ? ' selected' : '')}
             >
-              <Icon name="home" />
-              <span>Pets</span>
+              <Icon name="fa fa-paw" />
+              <span>Health Plans</span>
             </Link>
             <Link
               to={`/client/${loggedInUser.id}/payment-plans`}
               className={'nav-tab' + (selectedTab === 'PAYMENT_PLANS' ? ' selected' : '')}
             >
-              <Icon name="dollar_sign" />
-              <span>Pmt Plans</span>
+              <Icon name="fa fa-dollar-sign" />
+              <span>Payment Plans</span>
             </Link>
             <Link
               to={`/client/${loggedInUser.id}/payment-methods`}
               className={'nav-tab' + (selectedTab === 'PAYMENT_METHODS' ? ' selected' : '')}
             >
-              <Icon name="credit_card" />
+              <Icon name="fa fa-wallet" />
               <span>Wallet</span>
             </Link>
             <Link

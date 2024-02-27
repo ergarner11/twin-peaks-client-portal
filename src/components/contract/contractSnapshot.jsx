@@ -12,16 +12,12 @@ import Constants from '../../constants';
 
 import '../../styles/components/contract.scss';
 
-function ContractSnapshot({ contract, clientIsCurrent }) {
+function ContractSnapshot({ contract }) {
   const [showActivateContract, setShowActivateContract] = useState(false);
   const [showMakePayment, setShowMakePayment] = useState(false);
   const [showUpdatePaymentMethod, setShowUpdatePaymentMethod] = useState(false);
 
-  const clientOnHold =
-    !clientIsCurrent &&
-    !contract.isOnHold &&
-    !contract.isCollections &&
-    contract.contract_phase !== Constants.FINALIZED;
+  const clientOnHold = contract.isClientOnHold && contract.contract_phase !== Constants.FINALIZED;
   const onHold =
     contract.isOnHold ||
     (contract.contract_phase === Constants.FINALIZED && !contract.isCollections);

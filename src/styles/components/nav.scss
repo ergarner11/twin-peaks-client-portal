@@ -32,29 +32,33 @@ nav {
       height: 60px;
       width: 60px;
       padding: 8px 0px 5px 0px;
-      >span {
+      > span {
         font-size: 10px;
+        color: $layoutWhite;
       }
-      >svg {
+      > svg,
+      > i {
         margin-right: 0px;
         width: 25px;
         height: auto;
+      }
+      i {
+        font-size: 20px;
       }
       @media screen and (min-width: 768px) {
         flex-direction: row;
         height: 100%;
         width: unset;
         padding: 0px 20px;
-        >span {
+        > span {
           font-size: 14px;
         }
-        >svg {
+        > svg {
           margin-right: 10px;
         }
       }
-      >*:not(.tooltip-container) {
+      > *:not(.tooltip-container) {
         height: 26px;
-        font-family: $sura;
         line-height: 20px;
         display: flex;
         flex-direction: row;

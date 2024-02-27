@@ -27,7 +27,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route element={<ProtectedRoute />}>
-          <Route path="/client/:clientId/pet/:petId" element={<Client />} />
+          <Route path="/client/:clientId/health-plans" element={<Client />} />
           <Route path="/client/:clientId/payment-plans" element={<Client />} />
           <Route path="/client/:clientId/payment-methods" element={<Client />} />
           <Route exact path="/client/:clientId" element={<Client />} />

@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import moment from 'moment-timezone';
+
+import http from '../../services/httpService';
 
 import BillingActivity from '../contract/billingActivity';
 import Contract from '../contract/contract';
@@ -10,9 +12,32 @@ import { formatDate } from '../../util';
 import Constants from '../../constants';
 
 import '../../styles/components/contract.scss';
-import '../../styles/components/pet.scss';
 
-function PetHealthPlans({ pet, clientIsCurrent }) {
+function PetHealthPlans({ pet, client }) {
+  const [healthPlans, sethealthPlans] = useState([]);
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const getHealthPlans = async () => {
+      try {
+        setIsLoading(true);
+        const response = await http.get(
+          `/pet/getHealthPlans?pet_id=${pet.id}&client_id=${client.id}`
+        );
+        sethealthPlans(response.data);
+      } catch (error) {
+        setErrorMessage(error.response.data.message);
+      }
+      setIsLoading(false);
+    };
+
+    if (pet.id && client.id) {
+      getHealthPlans();
+    }
+  }, [pet, client]);
+
   const CURRENT_HEALTH_PLAN = 0;
   const PREVIOUS_HEALTH_PLANS = 1;
 
@@ -22,7 +47,12 @@ function PetHealthPlans({ pet, clientIsCurrent }) {
     { text: 'Previous Health Plans', selected: 'N' },
   ]);
 
-  const { currentHealthPlans, previousHealthPlans } = pet;
+  const currentHealthPlans = healthPlans.filter(
+    t => t.contract_phase !== Constants.FINALIZED || !t.isCurrent
+  );
+  const previousHealthPlans = healthPlans.filter(
+    t => t.contract_phase === Constants.FINALIZED && t.isCurrent
+  );
 
   const handleSelectNewTab = selectedTabIndex => {
     const newTabInfo = [...tabInfo];
@@ -33,13 +63,14 @@ function PetHealthPlans({ pet, clientIsCurrent }) {
   };
 
   return (
-    <React.Fragment>
+    <div>
+      {errorMessage && <p className="error flex-centered h-100 background-white">{errorMessage}</p>}
+      {isLoading && <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />}
       {selectedTabIndex === CURRENT_HEALTH_PLAN && (
         <React.Fragment>
-          {currentHealthPlans.length > 0 &&
-            currentHealthPlans.map(contract => (
-              <Contract key={contract.id} contract={contract} clientIsCurrent={clientIsCurrent} />
-            ))}
+          {currentHealthPlans.map(contract => (
+            <Contract key={contract.id} contract={contract} />
+          ))}
           {currentHealthPlans.length === 0 && (
             <div className="mt-3">
               {(!pet.inWaitingPeriod || pet.isDeceased) && (
@@ -114,7 +145,7 @@ function PetHealthPlans({ pet, clientIsCurrent }) {
           </button>
         </React.Fragment>
       )}
-    </React.Fragment>
+    </div>
   );
 }
 
