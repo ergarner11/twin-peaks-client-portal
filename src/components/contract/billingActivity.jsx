@@ -135,45 +135,49 @@ function BillingActivity({ contract }) {
       </Mobile>
       <NotMobile>
         <Collapse in={isExpanded}>
-          <div className="d-flex flex-column">
-            <div className="w-100">
-              <table className="w-100">
-                <thead className="border-bottom border-top">
-                  <tr>
-                    <th>Date</th>
-                    <th className="description">Description</th>
-                    <th className="payment-method">Payment Method</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                    <th>Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.map((t, i) => (
-                    <tr key={i} className={i % 2 === 0 ? `background-gray` : ''}>
-                      <td>{moment(t.insertTs).format('MM/DD/YYYY')}</td>
-                      <td className="description">{t.description}</td>
-                      <td className="payment-method">
-                        {t.category ? formatPaymentMethod(t, true) : ''}
-                      </td>
-                      <td>{formatCurrency(t.amount)}</td>
-                      <td>
-                        <span>{t.status}</span>
-                        {t.status === 'Failed' && (
-                          <Icon
-                            name="on_hold"
-                            className="ms-2 red"
-                            tooltipText={
-                              t.failureMessage ? t.failureMessage : 'Payment could not be processed'
-                            }
-                          />
-                        )}
-                      </td>
-                      <td>{formatCurrency(t.balance)}</td>
+          <div>
+            <div className="d-flex flex-column">
+              <div className="w-100">
+                <table className="w-100">
+                  <thead className="border-bottom border-top">
+                    <tr>
+                      <th>Date</th>
+                      <th className="description">Description</th>
+                      <th className="payment-method">Payment Method</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Balance</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {transactions.map((t, i) => (
+                      <tr key={i} className={i % 2 === 0 ? `background-gray` : ''}>
+                        <td>{moment(t.insertTs).format('MM/DD/YYYY')}</td>
+                        <td className="description">{t.description}</td>
+                        <td className="payment-method">
+                          {t.category ? formatPaymentMethod(t, true) : ''}
+                        </td>
+                        <td>{formatCurrency(t.amount)}</td>
+                        <td>
+                          <span>{t.status}</span>
+                          {t.status === 'Failed' && (
+                            <Icon
+                              name="on_hold"
+                              className="ms-2 red"
+                              tooltipText={
+                                t.failureMessage
+                                  ? t.failureMessage
+                                  : 'Payment could not be processed'
+                              }
+                            />
+                          )}
+                        </td>
+                        <td>{formatCurrency(t.balance)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </Collapse>
