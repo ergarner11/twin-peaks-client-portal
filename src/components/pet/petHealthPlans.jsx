@@ -47,13 +47,6 @@ function PetHealthPlans({ pet, client }) {
     { text: 'Previous Health Plans', selected: 'N' },
   ]);
 
-  const currentHealthPlans = healthPlans.filter(
-    t => t.contract_phase !== Constants.FINALIZED || !t.isCurrent
-  );
-  const previousHealthPlans = healthPlans.filter(
-    t => t.contract_phase === Constants.FINALIZED && t.isCurrent
-  );
-
   const handleSelectNewTab = selectedTabIndex => {
     const newTabInfo = [...tabInfo];
     newTabInfo.forEach(t => (t.selected = 'N'));
@@ -61,6 +54,13 @@ function PetHealthPlans({ pet, client }) {
     setTabInfo(newTabInfo);
     setSelectedTabIndex(selectedTabIndex);
   };
+
+  const currentHealthPlans = healthPlans.filter(
+    t => t.contract_phase !== Constants.FINALIZED || !t.isCurrent
+  );
+  const previousHealthPlans = healthPlans.filter(
+    t => t.contract_phase === Constants.FINALIZED && t.isCurrent
+  );
 
   return (
     <div>
