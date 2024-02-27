@@ -22,6 +22,7 @@ function ContractSnapshot({ contract }) {
     contract.isOnHold ||
     (contract.contract_phase === Constants.FINALIZED && !contract.isCollections);
   const notRenewing =
+    contract.isHealthPlan &&
     !contract.renewalInfo.isRenewing &&
     contract.deceased !== 'Y' &&
     contract.contract_phase !== Constants.FINALIZED;
