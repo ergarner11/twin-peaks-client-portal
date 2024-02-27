@@ -13,16 +13,7 @@ import Constants from '../../constants';
 import '../../styles/components/contract.scss';
 
 function ClientPaymentPlans({ client }) {
-  const CURRENT_PAYMENT_PLANS = 0;
-  const PREVIOUS_PAYMENT_PLANS = 1;
-
-  const [currentPaymentPlans, setCurrentPaymentPlans] = useState([]);
-  const [previousPaymentPlans, setPreviousPaymentPlans] = useState([]);
-  const [selectedTabIndex, setSelectedTabIndex] = useState(CURRENT_PAYMENT_PLANS);
-  const [tabInfo, setTabInfo] = useState([
-    { text: 'Current Payment Plans', selected: 'Y', customClass: 'no-border-radius-left' },
-    { text: 'Previous Payment Plans', selected: 'N' },
-  ]);
+  const [paymentPlans, setPaymentPlans] = useState([]);
 
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -32,9 +23,7 @@ function ClientPaymentPlans({ client }) {
       try {
         setIsLoading(true);
         const response = await http.get(`/client/getPaymentPlans?client_id=${client.id}`);
-        const { currentPaymentPlans, previousPaymentPlans } = response.data;
-        setCurrentPaymentPlans(currentPaymentPlans);
-        setPreviousPaymentPlans(previousPaymentPlans);
+        setPaymentPlans(response.data);
       } catch (error) {
         setErrorMessage(error.response.data.message);
       }
@@ -45,6 +34,15 @@ function ClientPaymentPlans({ client }) {
     }
   }, [client]);
 
+  const CURRENT_PAYMENT_PLANS = 0;
+  const PREVIOUS_PAYMENT_PLANS = 1;
+
+  const [selectedTabIndex, setSelectedTabIndex] = useState(CURRENT_PAYMENT_PLANS);
+  const [tabInfo, setTabInfo] = useState([
+    { text: 'Current Payment Plans', selected: 'Y', customClass: 'no-border-radius-left' },
+    { text: 'Previous Payment Plans', selected: 'N' },
+  ]);
+
   const handleSelectNewTab = selectedTabIndex => {
     const newTabInfo = [...tabInfo];
     newTabInfo.forEach(t => (t.selected = 'N'));
@@ -52,6 +50,13 @@ function ClientPaymentPlans({ client }) {
     setTabInfo(newTabInfo);
     setSelectedTabIndex(selectedTabIndex);
   };
+
+  const currentPaymentPlans = paymentPlans.filter(
+    t => t.contract_phase !== Constants.FINALIZED || !t.isCurrent
+  );
+  const previousPaymentPlans = paymentPlans.filter(
+    t => t.contract_phase === Constants.FINALIZED && t.isCurrent
+  );
 
   return (
     <div className="content-panel">
