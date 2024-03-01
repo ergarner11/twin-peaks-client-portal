@@ -65,8 +65,10 @@ function PetHealthPlans({ pet, client }) {
   return (
     <div>
       {errorMessage && <p className="error flex-centered h-100 background-white">{errorMessage}</p>}
-      {isLoading && <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />}
-      {selectedTabIndex === CURRENT_HEALTH_PLAN && (
+      {isLoading && (
+        <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle mt-5" />
+      )}
+      {!isLoading && selectedTabIndex === CURRENT_HEALTH_PLAN && (
         <React.Fragment>
           {currentHealthPlans.map(contract => (
             <Contract key={contract.id} contract={contract} />
@@ -74,7 +76,7 @@ function PetHealthPlans({ pet, client }) {
           {currentHealthPlans.length === 0 && (
             <div className="mt-3">
               {(!pet.inWaitingPeriod || pet.isDeceased) && (
-                <p className="message my-4 ms-2">No Health Plan to display for this pet</p>
+                <p className="message my-4 ms-2">No current Health Plan to display for this pet</p>
               )}
               {!pet.isDeceased && pet.inWaitingPeriod && (
                 <div className="notice">
