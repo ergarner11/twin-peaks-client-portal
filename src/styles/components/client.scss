@@ -8,17 +8,23 @@
     min-height: 150px;
     padding: 30px;
   }
-  background-color: $layoutGray;
-  border-radius: 5px;
-  label {
-    font-size: 16px;
-    color: $layoutBlack;
-    font-family: $newsCycle;
-    font-weight: bold;
-  }
-  p {
-    font-size: 16px;
-    font-family: $sura;
+  background-color: $layoutWhite;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  .attribute {
+    display: flex;
+    label {
+      width: 150px;
+      padding-bottom: 8px;
+      font-size: 14px;
+      font-family: $sura;
+      font-weight: 700;
+      color: $layoutBlack;
+    }
+    p {
+      font-family: $roboto;
+      font-size: 14px;
+    }
   }
 }
 

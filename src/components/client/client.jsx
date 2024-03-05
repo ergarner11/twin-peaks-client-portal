@@ -58,7 +58,7 @@ function Client() {
       {errorMessage && <p className="error flex-centered h-100 background-white">{errorMessage}</p>}
       {!errorMessage && (
         <React.Fragment>
-          <div className="client-info">
+          <div className="client-info border-bottom">
             {isLoading && (
               <i className="flex-centered h-100 fa fa-circle-notch fa-spin fa-2x subtle" />
             )}
@@ -70,7 +70,7 @@ function Client() {
                   </h1>
                 </div>
                 <div className="mt-3">
-                  <div className="flex-row-aligned">
+                  <div className="attribute">
                     <label className="me-2">Email:</label>
                     <p>{client.email || <span className="error font-14">Not Provided</span>}</p>
                   </div>
@@ -79,10 +79,10 @@ function Client() {
             )}
           </div>
           <Mobile>
-            <div className="d-flex flex-column flex-grow-1 mx-0 mt-4">{activeSection}</div>
+            <div className="d-flex flex-column flex-grow-1 mx-0">{activeSection}</div>
           </Mobile>
           <NotMobile>
-            <div className="d-flex mx-0 mt-4 flex-grow-1">
+            <div className="d-flex mx-0 flex-grow-1">
               <div className="background-white box-shadow w-25">
                 <div className="client-menu">
                   <button
