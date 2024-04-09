@@ -10,11 +10,11 @@ import ButtonPanel from '../common/buttonPanel';
 
 import { formatCurrency, formatPaymentMethod, validateCurrency } from '../../util';
 
-function OneTimePayment({ contract, handleClose }) {
+function OneTimePayment({ balance, clientId, contractId, handleClose }) {
   const [paymentMethod, setPaymentMethod] = useState({ isStored: 'Y', isPreview: 'N' });
   const [fullOrPartial, setFullOrPartial] = useState('full');
   const [paymentAmount, setPaymentAmount] = useState('');
-  const [previewPaymentAmount, setPreviewPaymentAmount] = useState(contract.amount_due);
+  const [previewPaymentAmount, setPreviewPaymentAmount] = useState(balance);
 
   const [currentStep, setCurrentStep] = useState('paymentDetails');
 
@@ -23,8 +23,8 @@ function OneTimePayment({ contract, handleClose }) {
 
   const handleFullOrPartialChange = value => {
     setFullOrPartial(value);
-    setPaymentAmount(value === 'full' ? contract.amount_due : 0);
-    setPreviewPaymentAmount(value === 'full' ? contract.amount_due : 0);
+    setPaymentAmount(value === 'full' ? balance : 0);
+    setPreviewPaymentAmount(value === 'full' ? balance : 0);
   };
 
   const handlePaymentAmountChange = ({ target }) => {
@@ -39,7 +39,7 @@ function OneTimePayment({ contract, handleClose }) {
     setErrorMessage('');
 
     const params = {
-      contractId: contract.id,
+      contractId,
       paymentAmount: previewPaymentAmount,
       paymentMethod: paymentMethod,
     };
@@ -59,10 +59,8 @@ function OneTimePayment({ contract, handleClose }) {
         {errorMessage && <p className="error">{errorMessage}</p>}
         {currentStep === 'paymentDetails' && (
           <React.Fragment>
-            <h2>Make a payment for {contract.name}</h2>
-            <span className="fw-bolder font-16 my-2">{`${formatCurrency(
-              contract.amount_due
-            )} due now`}</span>
+            <h2>Make a Payment</h2>
+            <span className="fw-bolder font-16 my-2">{`${formatCurrency(balance)} due now`}</span>
             <div className="radio-line align-items-start mb-2">
               <input
                 className="mt-2"
@@ -74,7 +72,7 @@ function OneTimePayment({ contract, handleClose }) {
                 onChange={({ target }) => handleFullOrPartialChange(target.value)}
               />
               <label className="fw-bolder news-cycle font-16" htmlFor="full">
-                Pay Outstanding Balance: {formatCurrency(contract.amount_due)}
+                Pay Outstanding Balance: {formatCurrency(balance)}
               </label>
             </div>
             <div className="radio-line align-items-start mb-3">
@@ -103,7 +101,7 @@ function OneTimePayment({ contract, handleClose }) {
               </label>
             </div>
             <PaymentMethodWidget
-              clientId={contract.client_id}
+              clientId={clientId}
               selectedPaymentMethod={paymentMethod}
               handleErrorMessage={setErrorMessage}
               handlePaymentMethodChange={paymentMethod => setPaymentMethod({ ...paymentMethod })}
@@ -140,7 +138,7 @@ function OneTimePayment({ contract, handleClose }) {
               <p id="newBalance">
                 {fullOrPartial === 'full'
                   ? '$0.00'
-                  : formatCurrency(contract.amount_due - previewPaymentAmount)}
+                  : formatCurrency(balance - previewPaymentAmount)}
               </p>
             </div>
             <ButtonPanel

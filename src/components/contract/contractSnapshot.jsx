@@ -135,7 +135,12 @@ function ContractSnapshot({ contract }) {
           </button>
         )}
         {showMakePayment && (
-          <OneTimePayment contract={contract} handleClose={() => setShowMakePayment(false)} />
+          <OneTimePayment
+            balance={contract.amount_due}
+            clientId={contract.client_id}
+            contractId={contract.id}
+            handleClose={() => setShowMakePayment(false)}
+          />
         )}
       </div>
     );
