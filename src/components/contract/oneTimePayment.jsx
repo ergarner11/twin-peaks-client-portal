@@ -46,7 +46,6 @@ function OneTimePayment({ balance, clientId, contractId, handleClose }) {
     };
 
     if (currentStep === 'paymentDetails') {
-      await http.post('/client/oneTimePayment/validate', params);
       setCurrentStep('preview');
     } else {
       await http.post('/client/oneTimePayment', params);
