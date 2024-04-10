@@ -39,16 +39,17 @@ function OneTimePayment({ balance, clientId, contractId, handleClose }) {
     setErrorMessage('');
 
     const params = {
+      clientId,
       contractId,
       paymentAmount: previewPaymentAmount,
       paymentMethod: paymentMethod,
     };
 
     if (currentStep === 'paymentDetails') {
-      await http.post('/healthPlan/oneTimePayment/validate', params);
+      await http.post('/client/oneTimePayment/validate', params);
       setCurrentStep('preview');
     } else {
-      await http.post('/healthPlan/oneTimePayment', params);
+      await http.post('/client/oneTimePayment', params);
       setTimeout(() => navigate(0), 3000);
     }
   };
