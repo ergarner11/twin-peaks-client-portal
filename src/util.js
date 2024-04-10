@@ -39,5 +39,5 @@ export const formatPaymentMethod = (paymentMethod, isShortened) => {
 };
 
 export const validateCurrency = string => {
-  return /^(\d{0,3})(\.\d{0,2})?$/.test(string);
+  return /^(\d{0,4})(\.\d{0,2})?$/.test(string);
 };
