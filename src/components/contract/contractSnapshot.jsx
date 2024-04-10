@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 import ActivateContract from './activateContract';
-import OneTimePayment from './oneTimePayment';
 import UpdatePaymentMethod from './updatePaymentMethod';
+
+import OneTimePayment from '../client/oneTimePayment';
 
 import Icon from '../common/icon';
 import { Mobile, NotMobile } from '../common/responsive';
