@@ -33,7 +33,7 @@ function UpdatePaymentMethod({ contract, handleClose }) {
         <h2 className="mb-3">Monthly Payment Method</h2>
         <PaymentMethodWidget
           clientId={contract.client_id}
-          selectedPaymentMethod={contract.currentPaymentMethod}
+          selectedPaymentMethod={contract.automaticPaymentMethod}
           displayStoredOnly={true}
           handleErrorMessage={setErrorMessage}
           handlePaymentMethodChange={setPaymentMethod}

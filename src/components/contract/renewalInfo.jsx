@@ -19,7 +19,7 @@ function RenewalInfo({ contract }) {
   const [showSchedulePayment, setShowSchedulePayment] = useState(false);
   const [renewalCost, setRenewalCost] = useState(0);
 
-  const { renewalInfo, end_date, start_date, currentPaymentMethod } = contract;
+  const { renewalInfo, end_date, start_date, automaticPaymentMethod } = contract;
 
   const endDate = formatDate(end_date);
   const newStartDate = moment(start_date, 'YYYY-MM-DD').add(1, 'years').format('MM/DD/YYYY');
@@ -99,12 +99,12 @@ function RenewalInfo({ contract }) {
                   Payment Scheduled:
                 </label>
                 <div className="d-flex">
-                  <p id="automaticPayment">{currentPaymentMethod ? 'Yes' : 'No'}</p>
+                  <p id="automaticPayment">{automaticPaymentMethod ? 'Yes' : 'No'}</p>
                   <button
                     className="btn-text-primary sura font-14 ms-3"
                     onClick={() => setShowSchedulePayment(true)}
                   >
-                    {currentPaymentMethod ? 'Edit Scheduled Payment' : 'Schedule Payment'}
+                    {automaticPaymentMethod ? 'Edit Scheduled Payment' : 'Schedule Payment'}
                   </button>
                   {showSchedulePayment && (
                     <SchedulePayment
@@ -116,14 +116,14 @@ function RenewalInfo({ contract }) {
                 </div>
               </div>
             )}
-            {currentPaymentMethod && (
+            {automaticPaymentMethod && (
               <div className="form-control-read-only mt-3">
                 <label className="mb-2" htmlFor="paymentMethod">
                   Payment Method:
                 </label>
                 <p id="paymentMethod">
-                  {currentPaymentMethod.category === Constants.CARD ? 'Card' : 'Bank Account'} -{' '}
-                  {currentPaymentMethod.last4}
+                  {automaticPaymentMethod.category === Constants.CARD ? 'Card' : 'Bank Account'} -{' '}
+                  {automaticPaymentMethod.last4}
                 </p>
               </div>
             )}

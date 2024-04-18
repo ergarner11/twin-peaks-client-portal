@@ -90,8 +90,10 @@ function ContractSnapshot({ contract }) {
           <label htmlFor="paymentMethod">Payment Method:</label>
           <div className="d-flex">
             <p id="paymentMethod">
-              {contract.currentPaymentMethod.category === Constants.CARD ? 'Card' : 'Bank Account'}{' '}
-              - {contract.currentPaymentMethod.last4}
+              {contract.automaticPaymentMethod.category === Constants.CARD
+                ? 'Card'
+                : 'Bank Account'}{' '}
+              - {contract.automaticPaymentMethod.last4}
             </p>
             <button
               className="btn-text-primary font-14 sura ms-3"

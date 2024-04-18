@@ -14,10 +14,10 @@ import { formatCurrency } from '../../util';
 
 function SchedulePayment({ contract, annualParticipationCharge, handleClose }) {
   const [automaticPayment, setAutomaticPayment] = useState(
-    !contract.currentPaymentMethod ? 'N' : 'Y'
+    !contract.automaticPaymentMethod ? 'N' : 'Y'
   );
   const [paymentMethod, setPaymentMethod] = useState(
-    contract.currentPaymentMethod ? contract.currentPaymentMethod : { isStored: 'Y' }
+    contract.automaticPaymentMethod ? contract.automaticPaymentMethod : { isStored: 'Y' }
   );
 
   const [errorMessage, setErrorMessage] = useState('');
