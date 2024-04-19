@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import { Mobile, NotMobile } from './responsive';
 
@@ -17,7 +16,6 @@ function ButtonPanel({
 }) {
   const primaryButtonClass = primaryIsError ? 'btn-filled-error' : 'btn-filled-primary';
   const [isProcessing, setIsProcessing] = useState(false);
-  const navigate = useNavigate();
 
   const processRequest = async () => {
     setIsProcessing(true);
@@ -27,13 +25,8 @@ function ButtonPanel({
         setIsProcessing(false);
       }
     } catch (error) {
-      if (error.response.status === 429) {
-        setIsProcessing(true);
-        setTimeout(() => navigate(0), 3000);
-      } else {
-        handleErrorMessage(error.response.data.message);
-        setIsProcessing(false);
-      }
+      handleErrorMessage(error.response.data.message);
+      setIsProcessing(false);
     }
   };
 
