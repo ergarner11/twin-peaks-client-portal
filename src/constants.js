@@ -43,6 +43,7 @@ module.exports = {
 
   //payment method category constants
   ACH: 'ach',
+  TERMINAL: 'terminal',
   CARD: 'card',
   CASH: 'cash',
   CHECK: 'check',
