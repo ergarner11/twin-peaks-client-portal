@@ -17,7 +17,7 @@ function Client() {
   const location = useLocation();
   const params = useParams();
 
-  const [client, setClient] = useState({ isCurrent: true, pets: [] });
+  const [client, setClient] = useState({ pets: [] });
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
