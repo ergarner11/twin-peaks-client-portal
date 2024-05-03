@@ -62,6 +62,7 @@ module.exports = {
   REFUND: 5,
   MIGRATION_ADJUSTMENT: 6,
   CONVERSION_ADJUSTMENT: 7,
+  PAYMENT_PLAN_CREDIT: 8,
 
   //percentage_off constants
   FIFTY_PERCENT: 1,
