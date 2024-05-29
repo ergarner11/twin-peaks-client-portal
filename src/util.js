@@ -25,6 +25,14 @@ export const formatPaymentMethod = (paymentMethod, isShortened) => {
     return `Check, #${paymentMethod.checkNumber}`;
   }
 
+  if (paymentMethod.isDaysmart) {
+    return 'Card';
+  }
+
+  if (paymentMethod.last4 === 'wallet') {
+    return 'Wallet';
+  }
+
   if (isShortened) {
     return `x-${paymentMethod.last4}`;
   }

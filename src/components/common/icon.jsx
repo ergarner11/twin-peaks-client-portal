@@ -118,7 +118,9 @@ function Icon({ name, tooltipText, className, style }) {
     return (
       <OverlayTrigger
         placement="top"
-        overlay={<Tooltip>{tooltipText || defaultTooltipText}</Tooltip>}
+        overlay={
+          <Tooltip style={{ position: 'fixed' }}>{tooltipText || defaultTooltipText}</Tooltip>
+        }
         trigger={['click', 'hover', 'focus']}
       >
         {icon}
