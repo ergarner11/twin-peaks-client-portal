@@ -38,7 +38,7 @@ module.exports = {
   ANNUAL: 2,
 
   //contract_type_ids constants
-  EMPLOYEE: Number(process.env.REACT_APP_EMPLOYEE_HP_CONTRACT_TYPE_ID),
+  EMPLOYEE_HP_CONTRACT_TYPE_ID: Number(process.env.REACT_APP_EMPLOYEE_HP_CONTRACT_TYPE_ID),
   GENERIC_PAYMENT_PLAN: Number(process.env.REACT_APP_PAYMENT_PLAN_CONTRACT_TYPE_ID),
 
   //payment method category constants
@@ -74,7 +74,7 @@ module.exports = {
 
   //role constants
   CLIENT: 1,
-  STAFF: 2,
+  EMPLOYEE: 2,
   MANAGER: 3,
 
   //species constants
