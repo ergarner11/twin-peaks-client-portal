@@ -54,7 +54,6 @@ function ContractSnapshot({ contract }) {
                 }`
               : 'Payment Plan'}
           </h2>
-          {contract.dental_enhanced === 'Y' && <Icon name="dental" className="me-0" />}
           {clientOnHold && <Icon name="client_on_hold" />}
           {onHold && <Icon name="on_hold" className="red" />}
           {contract.isCollections && <Icon name="collections" />}

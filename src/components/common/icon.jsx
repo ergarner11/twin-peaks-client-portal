@@ -67,7 +67,6 @@ function Icon({ name, tooltipText, className, style }) {
       break;
     case 'dental':
       icon = <DentalIcon className={className} />;
-      defaultTooltipText = 'Dental Enhanced';
       break;
     case 'dog':
       icon = <DogIcon className={className} />;
